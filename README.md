@@ -1,6 +1,6 @@
 # Página para cadastro de novos usuários
 
-Este projeto é uma aplicação web simples para cadastro e gerenciamento de usuários, desenvolvida com JavaScript no modelo SPA (Single Page Application).
+Este projeto é uma aplicação web simples para cadastro e gerenciamento de usuários, desenvolvida com JavaScript, HTML e CSS no modelo SPA (Single Page Application).
 
 O sistema permite:
 - cadastrar novos usuários;
