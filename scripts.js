@@ -1,8 +1,3 @@
-/*
-  --------------------------------------------------------------------------------------
-  Funções para renderizar cada página
-  --------------------------------------------------------------------------------------
-*/
 function renderInicio() {
   document.getElementById('content').innerHTML = `
     <section>
@@ -20,9 +15,9 @@ function renderCadastro() {
       <h2>User</h2>
       <img src="images/Usuario.webp" alt="icone de usuario" class="user-icon"/>
       <div class="form-row">
-        <input type="text" id="newEmail" placeholder="Email">
+        <input type="email" id="newEmail" placeholder="Email">
         <input type="text" id="newUsername" placeholder="Nome de usuário">
-        <input type="text" id="newpassword" placeholder="Senha">
+        <input type="password" id="newpassword" placeholder="Senha">
         <button onclick="newUser()" class="addBtn">
           <img src="images/Novo.png" alt="simbolo de mais"/>
         </button>
@@ -53,11 +48,6 @@ function navigate() {
 window.addEventListener('hashchange', navigate);
 window.addEventListener('DOMContentLoaded', navigate);
 
-/*
-  --------------------------------------------------------------------------------------
-  Função para obter a lista de usuários do servidor via requisição GET
-  --------------------------------------------------------------------------------------
-*/
 const getUsers = async () => {
     let url = 'http://127.0.0.1:5000/usuarios/listar';
     fetch(url, {
@@ -74,11 +64,6 @@ const getUsers = async () => {
       });
   }
 
-/*
-  --------------------------------------------------------------------------------------
-  Função para adicionar um novo usuário via requisição POST
-  --------------------------------------------------------------------------------------
-*/
 const postUser = async (inputEmail, inputUsername, inputPassword) => {
   const formData = new FormData();
   formData.append('email', inputEmail);
@@ -96,12 +81,6 @@ const postUser = async (inputEmail, inputUsername, inputPassword) => {
     });
 }
 
-/*
-  --------------------------------------------------------------------------------------
-  Função para adicionar um novo usuário (validação e inserção)
-  --------------------------------------------------------------------------------------
-*/
-
 const newUser = async () => {
   let inputEmail = document.getElementById("newEmail").value;
   let inputUsername = document.getElementById("newUsername").value;
@@ -109,10 +88,18 @@ const newUser = async () => {
   let linhaHr = document.getElementById("linha-hr")
   let tabela = document.getElementById("myTable")
 
+  const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+  
   if (inputEmail === '' || inputUsername === '' || inputPassword === '') {
     alert("Preencha todos os campos!");
-    return; 
-  } else {
+    return;
+  }
+    if (!emailRegex.test(inputEmail)) {
+      alert("Digite um e-mail válido!");
+      return;
+    }
+
+    else {
     insertUser(inputEmail, inputUsername);
     postUser(inputEmail, inputUsername, inputPassword);
     alert("Usuário adicionado!");
@@ -121,11 +108,6 @@ const newUser = async () => {
   }
 }
 
-/*
-  --------------------------------------------------------------------------------------
-  Função para inserir usuários na tabela apresentada
-  --------------------------------------------------------------------------------------
-*/
 const insertUser = (email, username, dataInclusao) => {
   if (!dataInclusao) {
     const hoje = new Date();
@@ -150,12 +132,6 @@ const insertUser = (email, username, dataInclusao) => {
   removeElement();
 }
 
-  
-/*
-  --------------------------------------------------------------------------------------
-  Função para criar um botão close para cada usuário da lista
-  --------------------------------------------------------------------------------------
-*/
 const insertButton = (parent) => {
   let span = document.createElement("span");
   let txt = document.createTextNode("\u00D7");
@@ -165,11 +141,6 @@ const insertButton = (parent) => {
 }
 
 
-/*
-  --------------------------------------------------------------------------------------
-  Função para remover um usuário da lista ao clicar no botão close
-  --------------------------------------------------------------------------------------
-*/
 const removeElement = () => {
   let close = document.getElementsByClassName("close");
   for (let i = 0; i < close.length; i++) {
@@ -184,12 +155,7 @@ const removeElement = () => {
     }
   }
 }
-  
-/*
-  --------------------------------------------------------------------------------------
-  Função para deletar um usuário do servidor via requisição DELETE
-  --------------------------------------------------------------------------------------
-*/
+
 const deleteUser = (username) => {
   let url = 'http://127.0.0.1:5000/usuarios?nome=' + encodeURIComponent(username);
   fetch(url, {
@@ -200,5 +166,3 @@ const deleteUser = (username) => {
       console.error('Error:', error);
     });
 }
-
-
