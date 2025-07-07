@@ -1,6 +1,6 @@
-# Página para cadastro de novos usuários
+# Gerenciamento de cadastro de novos usuários
 
-Este projeto é uma aplicação web simples para cadastro e gerenciamento de usuários, desenvolvida com JavaScript, HTML e CSS no modelo SPA (Single Page Application).
+StackUp é aplicação web simples para cadastro e gerenciamento de usuários, desenvolvida com JavaScript, HTML e CSS no modelo SPA (Single Page Application).
 
 O sistema permite:
 - cadastrar novos usuários;
@@ -8,9 +8,9 @@ O sistema permite:
 - remover usuários existentes.
 
 
-## Como Executar
+## Instalação
 
-Basta fazer o download do projeto e abrir o arquivo index.html no seu browser ou [acessar aqui](https://allanarpavao.github.io/cadastro-usuario/)
+Após baixar o projeto, localize e execute o arquivo index.html em qualquer navegador de sua preferência ou [acesse aqui](https://allanarpavao.github.io/cadastro-usuario/)
 
 ## 🛠️ Tecnologias Utilizadas
 
